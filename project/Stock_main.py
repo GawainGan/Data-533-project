@@ -8,7 +8,7 @@ class Stock(object):
             size = int(input("How many round do you want to play with?"))
             self.n = int(size)
       
-            print("You are going to play {} round, get ready!".format(self.n))
+            print("You are going to play {} round, get ready!!!!!!!!\n".format(self.n))
             self.high_price_list = [random.randint(201, 500) for i in range(int(self.n))]
             self.low_price_list = [random.randint(50, 200) for i in range(int(self.n))]
             self.volume_list = [random.randint(1, 200) for i in range(int(self.n))]
