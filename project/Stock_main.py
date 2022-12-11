@@ -1,3 +1,4 @@
+# stock main
 # class for Stock
 # contain the input for number of rounds to paly with
 import numpy as np
@@ -26,4 +27,3 @@ class Stock(object):
       def __str__(self):
             return f"high price list: {self.high_price_list}\nlow price list: {self.low_price_list}\nvolume list: {self.volume_list}"
 
-# Path: Stock_main.py
