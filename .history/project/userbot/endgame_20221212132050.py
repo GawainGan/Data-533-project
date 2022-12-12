@@ -1,8 +1,13 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
 import random
-import numpy as np
-import pandas as pd
 # this is for end game module
 
+## End game module starts here
 
 def cashback(player_1_status, dobby_2_status):
       cash_back_1 = list()
@@ -16,14 +21,14 @@ def cashback(player_1_status, dobby_2_status):
       for i in range(len(play_track_1)):
             if play_track_1[i] == 0 or play_track_2[i] == 0:
                   if play_track_1[i] == 0:
-                        cash_back_1.append(play_track_2[i])
-                        cash_back_2.append(0)
+                  cash_back_1.append(play_track_2[i])
+                  cash_back_2.append(0)
                   elif play_track_2[i] == 0:
-                        cash_back_2.append(play_track_1[i])  
-                        cash_back_1.append(0)
+                  cash_back_2.append(play_track_1[i])  
+                  cash_back_1.append(0)
                   else:
-                        cash_back_1.append(0)
-                        cash_back_2.append(0)      
+                  cash_back_1.append(0)
+                  cash_back_2.append(0)      
             else:
                   cash_back_1.append(0)
                   cash_back_2.append(0)
@@ -56,22 +61,24 @@ def buy_stock_rp(high_price, low_price, vol=0):
 
       return info
 
-def final_price(status, stock_list):
-      high = stock_list[0]
-      low = stock_list[1]
+def final_price(status, stock__info):
+      high = stock__info[0]
+      low = stock__info[1]
+      vol = status[2]
       rounds = stock_list[2]
-      
-      # vol = status[2]
       sell_price = []
 
       for i in range(rounds):
             curr_price = buy_stock_rp(high[i], low[i])
             sell_price.append(float(curr_price[1]))
             #total_value.append(stock_price*vol[i])
-
+            
       return sell_price
 
 # show summary for all rounds, by player
+import pandas as pd
+import numpy
+
 def play_summary(player_1_status, dobby_2_status):
       ## Player summary for each round
       headers = ['Totalexpense','Buyprice','Buyvol','Cashback','Sellprice']

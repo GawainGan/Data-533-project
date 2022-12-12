@@ -1,6 +1,5 @@
 import random
 import numpy as np
-import pandas as pd
 # this is for end game module
 
 
@@ -72,6 +71,9 @@ def final_price(status, stock_list):
       return sell_price
 
 # show summary for all rounds, by player
+import pandas as pd
+import numpy
+
 def play_summary(player_1_status, dobby_2_status):
       ## Player summary for each round
       headers = ['Totalexpense','Buyprice','Buyvol','Cashback','Sellprice']

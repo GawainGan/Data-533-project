@@ -1,6 +1,5 @@
 import random
 import numpy as np
-import pandas as pd
 # this is for end game module
 
 
@@ -57,21 +56,23 @@ def buy_stock_rp(high_price, low_price, vol=0):
       return info
 
 def final_price(status, stock_list):
-      high = stock_list[0]
-      low = stock_list[1]
-      rounds = stock_list[2]
-      
-      # vol = status[2]
-      sell_price = []
+    high = stock_list[0]
+    low = stock_list[1]
+    vol = status[2]
+    rounds = stock_list[2]
+    sell_price = []
 
       for i in range(rounds):
             curr_price = buy_stock_rp(high[i], low[i])
             sell_price.append(float(curr_price[1]))
             #total_value.append(stock_price*vol[i])
-
+            
       return sell_price
 
 # show summary for all rounds, by player
+import pandas as pd
+import numpy
+
 def play_summary(player_1_status, dobby_2_status):
       ## Player summary for each round
       headers = ['Totalexpense','Buyprice','Buyvol','Cashback','Sellprice']
