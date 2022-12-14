@@ -4,8 +4,7 @@ Group member : Yiwei Gan : gavinyw@outlook.com
                
 ## Directory layout:
 | Section | Details|
-
-| ----------- | ----------- |
+| -----------| -----------|
 |Project repository:| https://github.com/GawainGan/Data-533-project |
 |Main package:| main_package. Modules: Stock_main.py, Buy.py |
 |Sub packages:| sub_package. Modules: User.py, bot.py, endgame.py |
@@ -45,14 +44,33 @@ The script includes all main and sub packages of the program and instantiates ne
 
 There are two modules that are inherited by user and bot modules. They are present in the main package, details of them are as follows:
 a) Stock_main - This manages the stock related information for both the users to commonly play with. It generates stock with a high value, low value and available volume of the stock. These are global variables. The number of different stocks generated is equal to the number of rounds the player wants to play and is input by the user in this module. This also has functions to share the high price, low price and volume of stock outside the class. The values of the stock are generated based on random numbers.
+== class Stock: i. __init__ - This method initializes all stock parameters and also assigns a random value for high, low and available stock. Get the number of rounds to be played from the user.
+   ii. get_high_price - This method is used to get the high price list which is a list of all possible high values for the stock.
+   iii. get_low_price - This method is used to get the low price list which is a list of all possible low values for the stock.
+   iv. get_volume - The available volume for each stock.
+   v. get_size - Number of rounds selected to be played by the user.
+   vi. __str__ - prints high price, low price and volume lists == 
 
 b) Buy - This manages functions that will allow user to buy and also manages related contraints for the user. It generates a random price for the stock and accepts user input for the amount(volume) of stock user wants to buy. It validates if the user has enough balance to buy and allows only to the extent of outstanding balance and within the available stock limits. It calculates the total expense in purchasing the stock and shares the following information to the User module - 1. buy volume 2. expense in buying the stock (volume*price) 3. random price at which stock is bought by the user.
+== class Buy: i. __init__ - This method initializes all parameters for user to buy new stocks during the game.
+   ii. check_balance - This method checks if user has enough balance to buy new stock and returns True or False.
+   iii. check_volume - This method checks if available volume of stock is > new stock volume requested by user and returns True or False.
+   iv. execute - This method takes in high price, low price, balance, input volume and random price and returns the total expense, random price and volume purchased in the given round by the user.
+   v.  buy_stock - This method takes in high price, low price, balance, volume and calculates random price for the stock. It gets the volume that user wants to purchase and executes the buy using execute function. It validates if user is selecting a volume that is within the available balance and stock and handles warnings to get the right volume.== 
 
 
 ### Sub-packages and Modules
 
 The following sub packages are used. User and bot modules inherit stock class. User module also inherits Buy class for executing stock purchases. User as well as bot are two players in the game and both are given an initial balance of 10000.
 a) User - User class gets the n number of rounds player has selected to play and the stock high, low information from Stock_main module. It then gets the information from user if the user wants to play or pass the given round and processes following n times: If user selects to play, It then invokes the Buy module to get inputs from user on the volume to be bought and the overall stock price, expense. If user passes the round, it treats the overall expense for the round as zero. It stores the following information and has functions to make them accessible outside the class - total expense, volume and random stock price at purchase/buy.
+== class User that inheritss Stock, Buy classes: i. __init__ - This method initializes all stock parameters using stock object and provides an initial balance of 10000 to play the game. Get the number of rounds to be played from the user.
+   ii. check_balance - This method checks if user selected to play or pass the round and returns True or False.
+   iii. get_low_price - This method is used to get the low price list which is a list of all possible low values for the stock.
+   iv. print_stock_info - The shows details about stock to user to help in purchase, high value and low value and available volume.
+   v. process - This is the main function for the class and is executed n number of times (no of rounds selected by the user). It shows the       stock information to the user by calling print_stock_info function and collects user's input to play or pass the round. If calls   check_balance to validate if user has enough balance to buy stock and then calls buy_stock module to execute the stock purchase. It stores the stock buying expense, random buy price and buy volume for the user.
+   vi.  get_expense_list - This returns the total expense of each round of stock purchase for the user.
+   vii.  get_price_of_stock_buy_list - This returns the stock buy price of each round for the user.
+   viii. get_volume - This returns the stock buy volume of each round for the user. == 
 
 b) bot - Bot class will get the object created from Stock class as the inheritance. Bot will receive parameters from stock's object as its private parameters and process them through the following steps: 1. start with the loop and make bot to decide whether it should buy or not (based on the integer generated in random.int). Then bot will start to determine its own balance and buy the available amount of stock. Then bot will store all the parameters after the BUY, such as stock_price, volume_bought, expense. If the bot all the round, the parameters will just take 0 as the result. The result will be output as three array: ['expense'], ['total_stock_price_list'], and ['volume_list'].
 
