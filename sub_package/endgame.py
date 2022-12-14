@@ -72,13 +72,3 @@ def final_price(status, stock_list):
       return sell_price
 
 # show summary for all rounds, by player
-def play_summary(player_1_status, dobby_2_status):
-      ## Player summary for each round
-      headers = ['Totalexpense','Buyprice','Buyvol','Cashback','Sellprice']
-      print(pd.DataFrame(player_1_status,headers))
-
-      ## Dobby summary for each round
-      headers = ['Totalexpense','Buyprice','Buyvol','Cashback','Sellprice']
-      print(pd.DataFrame(dobby_2_status, headers))
-      
-      return

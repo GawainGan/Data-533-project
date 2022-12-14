@@ -3,32 +3,60 @@ Group member : Yiwei Gan : gavinyw@outlook.com
                Viji Rajagopalan : vijayalakshmi_r.here@yahoo.com
                
 ## Directory layout:
-.
-|____  Project repository: https://github.com/GawainGan/Data-533-project
-|
-|____        Main package: main_package. Modules: Stock_main.py, Buy.py
-|
-|____        Sub packages: sub_package. Modules: User.py, bot.py, endgame.py
-|
-|____       Documentation: README.md, Game_preview.png
-|
-|____      Automated test: to be updated by 19-Dec as part of step 2
+| Section | Details|
+
+| ----------- | ----------- |
+|Project repository:| https://github.com/GawainGan/Data-533-project |
+|Main package:| main_package. Modules: Stock_main.py, Buy.py |
+|Sub packages:| sub_package. Modules: User.py, bot.py, endgame.py |
+|Documentation:| README.md, Game_preview.png |
+|Automated test:| to be updated by 19-Dec as part of step 2 |
 
 
 ## Documentation:
 
-1. preview_of_program(only_User).png - Snapshot of game for quick view
+1. preview_of_program(only_User).png - Snapshot of game for user
+2. Game preview.jpg - Snapshot of full game with one round
 2. README.md - Comprehensive list of files and functions for the program
 
 
-## Execution steps: (Viji)
+## Execution steps:
+
+1. Execute one of the script files (refer Scripts section below) and the program will first ask for number of rounds to play. Input number as non-zero integer. (1-10 is recommended if wanting to finish game in < 1 min).
+2. User will be shown stock high value, stock low value and available quantity of stock to buy. User can choose not to buy or buy under available quantity. Do not: buy over available quantity, program gives error.
+3. User has a limit of 10000 for overall purchase.
+4. User can play till the number of rounds are exhausted.
+5. If user's stock is higher than available balance or if the volume selected will be more than available balance, user will be shown warnings and program will help direct the user to buy in less volume.
+6. In the background, there is a bot user who is competing with the user. Bot user will make decisions based on random and play the same number of rounds as user.
+7. Once user's rounds are exhausted, bot user plays and then the program ends by showing final score card and announcing the winner. Final score aka Gain/loss is calculated based on (buy volume * final sell price) - (buy volume * buy price) + cashback. If one player decides to play a round and another passes the round, the amount invested by the player in the given round (buy volume * buy price) is given as cashback to the second player.
 
 
 ## Files and Functions: 
-(We need to write about function details and how they work)
-### Scripts --- Viji
-### Packages --- (Main, buy - Viji) 
-### Sub-packages --- (User - Viji) (bot and endgame - Gawain)
+
+### Scripts
+
+There are two Python script files available for users depending on their operating system, 
+1. one for Linux/Mac (start_game.py)
+2. another based on Jupyter notebook (Windows_Start_game.ipynb) notebook mainly for Windows
+
+The script includes all main and sub packages of the program and instantiates necessary objects of Stock, User and bot(named Dobby!) and invokes the game. Upon completion of the game, it executes a endgame package to 1. calculate final price of each stock using random and collect game results 2. assess cashback for each player and totals 3. declare winner based on final score card. It also prints the scorecard.
+
+### Main Package
+
+There are two modules that are inherited by user and bot modules. They are present in the main package, details of them are as follows:
+a) Stock_main - This manages the stock related information for both the users to commonly play with. It generates stock with a high value, low value and available volume of the stock. These are global variables. The number of different stocks generated is equal to the number of rounds the player wants to play and is input by the user in this module. This also has functions to share the high price, low price and volume of stock outside the class. The values of the stock are generated based on random numbers.
+
+b) Buy - This manages functions that will allow user to buy and also manages related contraints for the user. It generates a random price for the stock and accepts user input for the amount(volume) of stock user wants to buy. It validates if the user has enough balance to buy and allows only to the extent of outstanding balance and within the available stock limits. It calculates the total expense in purchasing the stock and shares the following information to the User module - 1. buy volume 2. expense in buying the stock (volume*price) 3. random price at which stock is bought by the user.
+
+
+### Sub-packages and Modules
+
+The following sub packages are used. User and bot modules inherit stock class. User module also inherits Buy class for executing stock purchases. User as well as bot are two players in the game and both are given an initial balance of 10000.
+a) User - User class gets the n number of rounds player has selected to play and the stock high, low information from Stock_main module. It then gets the information from user if the user wants to play or pass the given round and processes following n times: If user selects to play, It then invokes the Buy module to get inputs from user on the volume to be bought and the overall stock price, expense. If user passes the round, it treats the overall expense for the round as zero. It stores the following information and has functions to make them accessible outside the class - total expense, volume and random stock price at purchase/buy.
+
+b) bot - 
+
+c) endgame - 
 
 
 ## Automates Tests (to be updated by 19-Dec as part of step 2)

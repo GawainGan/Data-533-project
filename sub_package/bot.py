@@ -1,9 +1,8 @@
 
 from main_package.Stock_main import *
-from main_package.Buy import *
 
 
-class bot(Stock, Buy):
+class bot(Stock):
       def __init__(self, Stock):
             self.stock = Stock
             self.len_range = int(self.stock.n)
@@ -84,11 +83,11 @@ class bot(Stock, Buy):
                     print("|Input vol: {}, expense: {} \t\t|".format(
                         in_vol, in_vol*ran_price))
 
-                    # list contain the each expense of stock (user input)
+                    # list contain the each expense of stock
                     self.info['expense'].append(exp)
                     # list contain the each price of run by random
                     self.info['total_stock_price_list'].append(ran_price)
-                    # list contain the each volume of stock (user input)
+                    # list contain the each volume of stock
                     self.info['volume_list'].append(in_vol)
                     self.balance -= exp
 
@@ -121,10 +120,4 @@ class bot(Stock, Buy):
             return self.info['total_stock_price_list'][0:self.len_range]
 
       def get_volume(self):
-        return self.info['volume_list'][0:self.len_range]
-
-#    def get_high_price(self):
-#            return self.info['volume_list'][0:self.len_range]
-
-#    def get_low_price(self):
-#            return self.info['volume_list'][0:self.len_range]
+            return self.info['volume_list'][0:self.len_range]

@@ -5,7 +5,6 @@ from main_package.Buy import *
 
 
 
-# Change by Viji: added new variable and added to method buy_stock - userobj
 class User(Stock, Buy):
     def __init__(self,Stock):
         __metaclass__ = Stock # the class User inherits from Stock and must initialize a meta class from Stock 
